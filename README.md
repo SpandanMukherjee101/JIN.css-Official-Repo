@@ -36,7 +36,7 @@ For a compressed CSS build:
 npx sass --style=compressed JIN.scss JIN.css
 ```
 
-To generate a purged/minified output after compiling `JIN.css`, run the local package script:
+To generate a purged/minified output after compiling `JIN.css`, run the local package script from this repository root:
 
 ```bash
 npm run jin
@@ -46,6 +46,18 @@ You can also specify a custom output path:
 
 ```bash
 npm run jin -- --out ./dist/JIN.min.css
+```
+
+If you install `jin.css` as a dependency in another project, you do not need to add a custom script. Use the built-in package CLI directly:
+
+```bash
+npx jin --out ./dist/jin.min.css
+```
+
+Or, if you prefer npm exec:
+
+```bash
+npm exec jin -- --out ./dist/jin.min.css
 ```
 
 ## Usage

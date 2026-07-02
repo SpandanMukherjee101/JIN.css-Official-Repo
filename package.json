@@ -1,6 +1,10 @@
 {
   "name": "jin.css",
   "version": "2.0.0",
+  "type": "module",
+  "bin": {
+    "jin": "./bin/build.js"
+  },
   "main": "index.js",
   "scripts": {
     "jin": "node ./bin/build.js"
