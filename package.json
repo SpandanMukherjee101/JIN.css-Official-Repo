@@ -1,6 +1,6 @@
 {
   "name": "jin.css",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "type": "module",
   "bin": {
     "jin": "./bin/build.js"
