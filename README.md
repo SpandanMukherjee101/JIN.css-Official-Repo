@@ -16,7 +16,7 @@ JIN.css is a lightweight utility-first CSS framework built with SCSS. It provide
 
 ## Installation
 
-Install the project dependencies:
+Install the project dependencies using the repository's current `package.json`:
 
 ```bash
 npm install
@@ -24,7 +24,7 @@ npm install
 
 ## Build
 
-Compile the SCSS source into the CSS bundle:
+Compile the SCSS source into the CSS bundle from this repo root:
 
 ```bash
 npx sass JIN.scss JIN.css
@@ -36,16 +36,16 @@ For a compressed CSS build:
 npx sass --style=compressed JIN.scss JIN.css
 ```
 
-To generate a purged/minified output after compiling `JIN.css`, run:
+To generate a purged/minified output after compiling `JIN.css`, run the local package script:
 
 ```bash
-node ./bin/build.js
+npm run jin
 ```
 
 You can also specify a custom output path:
 
 ```bash
-node ./bin/build.js --out ./dist/JIN.min.css
+npm run jin -- --out ./dist/JIN.min.css
 ```
 
 ## Usage
