@@ -2,13 +2,17 @@
 
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 import { PurgeCSS } from "purgecss";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const packageRoot = path.resolve(__dirname, "..");
+
 // Input and output paths
-const inputCSS = path.resolve("JIN.css");
+const inputCSS = path.resolve(packageRoot, "JIN.css");
 const outputPath = process.argv.includes("--out")
-  ? process.argv[process.argv.indexOf("--out") + 1]
-  : path.resolve("JIN.min.css");
+  ? path.resolve(process.cwd(), process.argv[process.argv.indexOf("--out") + 1])
+  : path.resolve(process.cwd(), "JIN.min.css");
 
 const outputDir = path.dirname(outputPath);
 
@@ -32,6 +36,10 @@ if (!fs.existsSync(outputDir)) {
       content,
       css: [inputFile],
     });
+
+    if (!purgeCSSResult || !purgeCSSResult[0] || typeof purgeCSSResult[0].css !== "string") {
+      throw new Error("PurgeCSS returned no CSS output. Check that the input CSS file exists and the content paths are correct.");
+    }
 
     fs.writeFileSync(outputPath, purgeCSSResult[0].css);
     console.log(`✅ Purged CSS written to: ${outputPath}`);
