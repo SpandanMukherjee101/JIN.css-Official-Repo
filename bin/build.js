@@ -23,11 +23,16 @@ if (!fs.existsSync(outputDir)) {
 
 // Run PurgeCSS
 (async () => {
-  // Default paths to scan for used classes
-  const content = ["./**/*.html", "./**/*.{js,jsx,ts,tsx}"];
+  // Default paths to scan for used classes in the current project
+  // Exclude node_modules to avoid scanning dependency code.
+  const projectRoot = process.cwd();
+  const content = [
+    `${projectRoot}/**/*.html`,
+    `${projectRoot}/**/*.{js,jsx,ts,tsx}`,
+  ];
 
-  // Location of your CSS inside the package
-  const inputFile = path.resolve("JIN.css");
+  // Always use the package's on-disk JIN.css file for input
+  const inputFile = inputCSS;
 
   console.log("🔍 Running PurgeCSS on JIN.css...");
 
